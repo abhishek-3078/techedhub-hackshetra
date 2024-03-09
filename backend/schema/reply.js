@@ -16,14 +16,26 @@ const replySchema = new mongoose.Schema({
       required: true
     }
   },
+  // post: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   refPath: 'onModel'
+  // },
+  // onModel: {
+  //   type: String,
+  //   enum: ['Roadmap', 'Course']
+  // },
   post:{
     type:String
+  },
+  parentReply: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Reply' // Reference to another reply (parent reply)
   },
   upvotes: {
     type: Number,
     default: 0
   },
-  createdAt:{
+  createdAt: {
     type: Date,
     default: Date.now
   }

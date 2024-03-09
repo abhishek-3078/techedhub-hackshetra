@@ -10,13 +10,31 @@ const CommentBox = (props) => {
     setIsReplying(!isReplying);
   };
 
-  const handleReplySubmit = () => {
-    // Handle the submission of the reply text here
-    console.log("Reply submitted:", replyText);
-
-    // Reset the reply state
-    setIsReplying(false);
-    setReplyText("");
+  const handleReplySubmit = async() => {
+        e.preventDefault()
+        console.log("inside")
+        try{
+            const res= await fetch(`${API}/reply/reply`,{
+                method:"POST",
+                headers: {
+                    'Content-Type': 'application/json' 
+                },
+                body:JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            }
+            )
+            const data=await res.json()
+            console.log("afete",data)
+            if(data.success){
+                localStorage.setItem('token',data.token)
+                window.location.href="/"
+            }
+        }catch(e){
+            console.log("hello")
+              
+        }
   };
 
   return (

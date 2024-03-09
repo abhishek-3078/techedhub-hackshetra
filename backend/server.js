@@ -124,7 +124,7 @@ app.get('/logout',(req,res)=>{
 app.get('/getComments',async(req,res)=>{
     const {post}=req.query
     console.log("post",post)
-    const data=await Reply.find({post},'-author.id -_id -__v -createdAt').sort({createdAt:-1})
+    const data=await Reply.find({post},'-author.id -__v -createdAt').sort({createdAt:-1})
     console.log(data)
     res.send({data:data})
 })
@@ -144,6 +144,30 @@ app.post('/reply',authenticate,async (req,res)=>{
 
     
 })
+app.get('/reply',async (req,res)=>{
+    const {parent}=req.query
+    const data=await Reply.find({parentReply:parent},'-author.id -__v -createdAt').sort({createdAt:-1})
+    console.log(data)
+    res.send({data:data})
+})
+app.post('/reply/reply',authenticate,async (req,res)=>{
+    const {message,parent}=req.body
+    console.log(parent,message)
+    const data=new Reply({
+        text:message,
+        author:{
+            id:req.user.id,
+            username:req.user.username
+        },
+        parentReply:parent
+    })
+    console.log(data)
+    await data.save()
+    res.send({message:"pahuch gya"})
+
+    
+})
+
 app.listen(3000,()=>{
     console.log(`server is listeing on the port ${PORT}`);
 })
