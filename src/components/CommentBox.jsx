@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BsReply } from "react-icons/bs";
 import { BiUpvote, BiDownvote } from "react-icons/bi";
-
+import { API } from "../assets/constant";
 const CommentBox = (props) => {
   const [isReplying, setIsReplying] = useState(false);
   const [replyText, setReplyText] = useState("");
@@ -9,31 +9,41 @@ const CommentBox = (props) => {
   const handleReplyClick = () => {
     setIsReplying(!isReplying);
   };
-
-  const handleReplySubmit = async() => {
+const getReplies=async(e)=>{
+  e.preventDefault()
+        console.log("inside")
+        try{
+            const res= await fetch(`${API}/reply?parent=${props.id}`,{
+                method:"GET",
+                headers: {
+                    'Content-Type': 'application/json' 
+                }
+            }
+            )
+            setReplyText("")
+        }catch(e){
+            console.log("hello")          
+        }
+}
+  const handleReplySubmit = async(e) => {
         e.preventDefault()
         console.log("inside")
         try{
             const res= await fetch(`${API}/reply/reply`,{
                 method:"POST",
                 headers: {
-                    'Content-Type': 'application/json' 
+                    'Content-Type': 'application/json' ,
+                    'Authorization':localStorage.getItem('token')
                 },
                 body:JSON.stringify({
-                    email: email,
-                    password: password
+                   message:replyText,
+                    parent:props.id
                 })
             }
             )
-            const data=await res.json()
-            console.log("afete",data)
-            if(data.success){
-                localStorage.setItem('token',data.token)
-                window.location.href="/"
-            }
+            setReplyText("")
         }catch(e){
-            console.log("hello")
-              
+            console.log("hello")          
         }
   };
 

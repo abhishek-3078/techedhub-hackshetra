@@ -24,6 +24,7 @@ const replySchema = new mongoose.Schema({
   //   type: String,
   //   enum: ['Roadmap', 'Course']
   // },
+  tag:[String],
   post:{
     type:String
   },

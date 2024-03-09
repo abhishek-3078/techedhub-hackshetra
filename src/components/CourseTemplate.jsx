@@ -115,7 +115,7 @@ const CourseTemplate = () => {
                             
                             {replies.length>0? replies.map((reply,i)=>{
                                 
-                                return <div key={i}><CommentBox author = {reply.author.username} text = {reply.text} upvotes = {reply.upvotes} /></div>
+                                return <div key={i}><CommentBox author = {reply.author.username} text = {reply.text} upvotes = {reply.upvotes} id={reply._id}/></div>
                             }):<></>
                         }
                         

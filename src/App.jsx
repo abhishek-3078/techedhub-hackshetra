@@ -15,6 +15,8 @@ import CourseTemplate from "./components/CourseTemplate";
 
 import NavbarWrapper , {FooterWrapper} from "./components/NavbarWrapper";
 import SubjectDashboard from "./components/SubjectDashboard";
+import CourseSearched from "./components/CourseSearched";
+import RoadMapList from "./components/RoadMapList";
 
 
 
@@ -29,7 +31,9 @@ function App() {
           <Route path="/userprofile/:user" element={<AdminPanel/>}></Route>
 
           <Route index element={<Home />} />
-          <Route path="/course/:slug" element={<CourseTemplate/>}/>
+          {/* <Route path="/course/:slug" element={<CourseTemplate/>}/> */}
+          <Route path="/course/:slug" element={<CourseSearched/>}/>
+          <Route path="/course/:slug/roadmaplist" element={< RoadMapList/>}/>
           <Route path ="/login" element={<Login/>}/>
           <Route path ="/signup" element={<SignUp/>}/>
           <Route path ="/home" element={<SubjectDashboard/>}/>
