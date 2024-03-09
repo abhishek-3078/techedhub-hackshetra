@@ -5,13 +5,14 @@ import { API } from "../assets/constant";
 const CommentBox = (props) => {
   const [isReplying, setIsReplying] = useState(false);
   const [replyText, setReplyText] = useState("");
+  const [replyData, setReplyData] = useState([])
 
   const handleReplyClick = () => {
     setIsReplying(!isReplying);
   };
 const getReplies=async(e)=>{
   e.preventDefault()
-        console.log("inside")
+        console.log("inside",props)
         try{
             const res= await fetch(`${API}/reply?parent=${props.id}`,{
                 method:"GET",
@@ -20,6 +21,9 @@ const getReplies=async(e)=>{
                 }
             }
             )
+            const data=await res.json()
+            console.log(data.data)
+            setReplyData(data.data)
             setReplyText("")
         }catch(e){
             console.log("hello")          
@@ -66,8 +70,13 @@ const getReplies=async(e)=>{
             <BiUpvote color="white" size={20} />
           </div>
           <p className="text-white ">{props.upvotes}</p>
-          <div>
+          <div className="ml-3">
             <BiDownvote color="white" size={20} />
+          </div>
+          <div className="ml-3">
+            <button className="bg-pink-500 text-white px-4 py-2 rounded" onClick={getReplies}>
+                Show
+            </button>
           </div>
         </div>
         <div className="flex mr-5">
@@ -98,6 +107,17 @@ const getReplies=async(e)=>{
           </button>
         </div>
       )}
+     {
+        replyData.length>0?<div>
+            daf
+            {replyData.map((reply) =>{
+                console.log("relsadfa:",reply)
+        return(
+            <CommentBox author = {reply.author.username} text = {reply.text} upvotes = {reply.upvotes} id={reply._id}/>
+        )
+            })}
+        </div> :<></>
+     }
     </div>
   );
 };
