@@ -8,12 +8,14 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config()
 const User=require('./schema/user')
 const Reply=require('./schema/reply')
+const roadMapRouter=require("./routes/roadmap")
 const PORT = process.env.PORT||3000;
 require('./db')
 app.use(cors())
 app.use(express.urlencoded())
 app.use(express.json())
 app.use(cookieParser());
+app.use("/roadmaps",roadMapRouter)
 
 const authenticate=async (req,res,next)=>{
     const token = req.header('Authorization');

@@ -8,6 +8,13 @@ const roadmapSchema = new Schema({
   field:{
     type:[String]
   },
+  metadesc:{
+    type:String
+  },
+  upvote:{
+    type:Number,
+    default:0
+  },
   content:[
     {
         title: {
