@@ -17,6 +17,7 @@ import NavbarWrapper , {FooterWrapper} from "./components/NavbarWrapper";
 import SubjectDashboard from "./components/SubjectDashboard";
 import CourseSearched from "./components/CourseSearched";
 import RoadMapList from "./components/RoadMapList";
+import AddCoursePage from "./components/AddCoursePage";
 
 
 
@@ -37,6 +38,7 @@ function App() {
           <Route path ="/login" element={<Login/>}/>
           <Route path ="/signup" element={<SignUp/>}/>
           <Route path ="/home" element={<SubjectDashboard/>}/>
+          <Route path = '/addCourse' element={<AddCoursePage/>} />
 
 
       </Routes>

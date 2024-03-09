@@ -17,6 +17,10 @@
     font-size: 25px;
     border-radius: 20px;
 }
+
+.green-bg{
+    background-color: green;
+}
 .separator {
     border-left: 5px solid black; 
     height: 100%;
