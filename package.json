@@ -1,0 +1,40 @@
+{
+  "name": "techedhub",
+  "private": true,
+  "version": "0.0.0",
+  "proxy": "http://localhost:8000",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.10.1",
+    "react-vertical-timeline-component": "^3.6.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.0.3",
+    "autoprefixer": "^10.4.15",
+    "eslint": "^8.45.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "postcss": "^8.4.27",
+    "react-router-dom": "^6.15.0",
+    "tailwind-scrollbar": "^3.0.5",
+    "tailwindcss": "^3.3.3",
+    "vite": "^4.4.5"
+  },
+  "description": "TechEdHub is a comprehensive website designed to provide users with easy access to a wide range of tech-related courses and learning resources. It aims to cater to tech enthusiasts, students, and professionals seeking to enhance their skills, stay updated with the latest technologies, and embark on a continuous learning journey.",
+  "main": "vite.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
