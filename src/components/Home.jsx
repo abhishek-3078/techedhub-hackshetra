@@ -80,12 +80,11 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
-      <main className="bg-primary1 relative  ">
+    <div className="relative z-0">
+      <main className="bg-primary1  ">
         <div className="p-4 flex flex-col justify-evenly relative overflow-hidden bg-none">
-          {loginDivDisplay ? <LoginDiv /> : <></>}
-          {showPreloader && <BikeAnimation />}
-          <div className="absolute h-full w-[2400px] top-0   left-0 ">
+       
+          <div className="absolute h-full w-[2400px] top-0  left-0 ">
             <video autoPlay muted loop className="w-border-2  ">
               <source src="/videos/video_bg.mp4" type="video/mp4" />
               Your browser does not support the video tag.

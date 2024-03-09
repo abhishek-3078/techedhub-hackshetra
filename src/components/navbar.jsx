@@ -49,7 +49,7 @@ const NavOption = ({name, link, tabActive, handleClick}) => {
   console.log(name, tabActive)
 
   return (<>
-            <li className={tabActive===id? "activeTab" : ""} onClick={() => {handleClick(id);}}>
+            <li className={tabActive===id? "activeTab" : "no-underline"} onClick={() => {handleClick(id);}}>
               {name}
             </li>
         </>)
@@ -70,14 +70,14 @@ const NavTab = () => {
   return (
     <ul>
       {arrayOfTabs.map((item) => {
-        return <Link to={item.link}><NavOption name={item.name} link={item.link} tabActive={tabActive} handleClick={handleClick} /></Link>
+        return <Link to={item.link} className='no-underline text-white'><NavOption name={item.name} link={item.link} tabActive={tabActive} handleClick={handleClick} /></Link>
       })}
     </ul>
   )
 }
 
 const Navbar = () => {
-  const {loginDivDisplay,setloginDivDisplay}=useCounter()
+  const [loginDivDisplay,setloginDivDisplay]=useState(false)
   const [userName,setUserName] = useState(null);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -123,7 +123,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav>
+    <nav className='relative z-[100]'>
       <div className='logoContainer'>
         <Logo link="/"/>
       </div>
@@ -136,9 +136,14 @@ const Navbar = () => {
 
 
       <div className='loginSign_UpContainer'>
-        <div className="container flex justify-end" onClick={loginDivDisplayToggle}>
-          {userName != null ? <div className='userImg rounded-full h-10 w-10 cursor-pointer text-white text-3xl leading-[100
-          %] bg-slate-500'>{userFirstNameChar}  </div> :
+        <div className="container flex justify-end" >
+          {userName != null ?<> <div onClick={()=>setloginDivDisplay(!loginDivDisplay)} className='userImg rounded-full h-10 w-10 cursor-pointer text-white text-3xl leading-[100
+          %] bg-slate-500'>{userFirstNameChar}</div>
+          <div className='absolute '>
+          {loginDivDisplay? <LoginDiv/>:<></>}
+          </div>
+          </>
+          :
             <>
             <Link to="/login"><button className="log">Login</button></Link> 
             <Link to="/signup"><button className="reg">Sign up</button></Link>

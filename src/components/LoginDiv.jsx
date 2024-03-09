@@ -1,10 +1,26 @@
 import React from 'react'
 import './LoginDivCSS.css'
+import { API } from '../assets/constant';
+
+// const { loginDivDisplay, setloginDivDisplay } = useCounter();
 
 const LoginDiv = () => {
     const userdata = localStorage.getItem('userdata');
-    console.log("userdata : ",userdata);
     
+    console.log("userdata : ",userdata);
+  const handleLogout=async(e)=>{
+    e.preventDefault();
+    try{
+
+        const res=await fetch(`${API }/logout`)
+        if(res.ok){
+            localStorage.removeItem('token')
+        }
+        window.location='/'
+    }catch(e){
+        console.log("error in logout")
+    }c
+  }  
   return (
     
     <div className="loginDivContainer absolute right-10 z-[100]">
@@ -71,7 +87,7 @@ const LoginDiv = () => {
                     <div className='optionImageContainer'>
                         <img src="https://cdn-icons-png.flaticon.com/512/3580/3580154.png"/>
                     </div>
-                    <div className="optionItem-name">
+                    <div className="optionItem-name" onClick={handleLogout}>
                         <h2>Logout</h2>
                     </div>
                 </li>
