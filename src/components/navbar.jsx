@@ -70,7 +70,7 @@ const NavTab = () => {
   return (
     <ul>
       {arrayOfTabs.map((item) => {
-        return <NavOption name={item.name} link={item.link} tabActive={tabActive} handleClick={handleClick} />
+        return <Link to={item.link}><NavOption name={item.name} link={item.link} tabActive={tabActive} handleClick={handleClick} /></Link>
       })}
     </ul>
   )
@@ -136,7 +136,7 @@ const Navbar = () => {
 
 
       <div className='loginSign_UpContainer'>
-        <div className="container" onClick={loginDivDisplayToggle}>
+        <div className="container flex justify-end" onClick={loginDivDisplayToggle}>
           {userName != null ? <div className='userImg rounded-full h-10 w-10 cursor-pointer text-white text-3xl leading-[100
           %] bg-slate-500'>{userFirstNameChar}  </div> :
             <>

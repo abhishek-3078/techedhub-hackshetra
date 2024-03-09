@@ -1,53 +1,40 @@
 import React from 'react'
 import './LoginDivCSS.css'
-import { API } from '../assets/constant';
-import { Link } from 'react-router-dom';
 
 const LoginDiv = () => {
-    const username = localStorage.getItem('username');
-    // console.log("username : ",username);
+    const userdata = localStorage.getItem('userdata');
+    console.log("userdata : ",userdata);
     
-
-    const logout = async()=>{
-        const res=await fetch(`${API}/logout`)
-        const data=await res.json()
-        if(data.success){
-          localStorage.removeItem('token')
-          localStorage.removeItem('useremail');
-          localStorage.removeItem('username');
-          window.location.href="/login"
-        }
-        // ,{
-        //   method: 'GET',
-        //   credentials: 'include'
-        // })
-        // const data=await res.json()
-        // console.log(data)
-        // window.location.assign(`${API}/logout`)
-      }
-
   return (
     
     <div className="loginDivContainer absolute right-10 z-[100]">
         <div className="profContainer childlogindiv">
 
-            <div className='userContainer'>
-                <h2>{(username != null) ? username : "User"}</h2>
+            {/* <div className='userContainer'>
+                <h2>Dark Avenger</h2>
+            </div> */}
+
+
+            <div class="emailIDContainer">
+                architchhajed6@gmail.com
+            </div>
+
+            <div className="profPhotoContainer">
+                <img src="https://media.istockphoto.com/id/1451587807/vector/user-profile-icon-vector-avatar-or-person-icon-profile-picture-portrait-symbol-vector.jpg?s=612x612&w=0&k=20&c=yDJ4ITX1cHMh25Lt1vI1zBn2cAKKAlByHBvPJ8gEiIg="></img>
             </div>
         </div>
 
 
         <div className="optionContainer childlogindiv">
             <ul>
-                <Link to ={`/userprofile/${username}`} className='no-underline'><li className="optionItem ">
+                <li className="optionItem">
                     <div  className='optionImageContainer' >
                         <img src="https://media.geeksforgeeks.org/img-practice/user_web-1598433228.svg"/>
                     </div>
-                    <div className="optionItem-name ">
-                        <h2 >My Profile</h2>
+                    <div className="optionItem-name">
+                        <h2>My Profile</h2>
                     </div>
                 </li>
-                </Link>
                 <li className="optionItem">
                     <div className='optionImageContainer'>
                         <img src="https://img.freepik.com/free-icon/books_318-761759.jpg?w=2000"/>
@@ -84,7 +71,7 @@ const LoginDiv = () => {
                     <div className='optionImageContainer'>
                         <img src="https://cdn-icons-png.flaticon.com/512/3580/3580154.png"/>
                     </div>
-                    <div className="optionItem-name" onClick={logout}>
+                    <div className="optionItem-name">
                         <h2>Logout</h2>
                     </div>
                 </li>
